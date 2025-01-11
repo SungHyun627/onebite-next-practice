@@ -17,12 +17,21 @@ export const getStaticPaths = async () => {
       },
     ],
     fallback: true,
+    // false: 404 Not found
+    // blocking: SSR 방식
+    // true: SSR 방식  + 데이터가 없는 fallback 페이지를 보여주고 데이터를 후속으로 가져옴
   };
 };
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params!.id;
   const book = await fetchOneBook(Number(id));
+
+  if (!book) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: { book },
