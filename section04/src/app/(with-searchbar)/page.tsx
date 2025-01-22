@@ -11,7 +11,6 @@ async function AllBooks() {
     return <div>오류가 발생했습니다...</div>;
   }
   const allBooks: BookData[] = await response.json();
-  console.log(allBooks);
 
   return (
     <div>
@@ -30,7 +29,6 @@ async function REcoBooks() {
     return <div>오류가 발생했습니다...</div>;
   }
   const recoBooks: BookData[] = await response.json();
-  console.log(recoBooks);
 
   return (
     <div>
