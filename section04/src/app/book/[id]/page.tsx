@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import style from './page.module.css';
 
 export function generateStaticParams() {
@@ -10,6 +11,9 @@ export default async function Page({ params }: { params: Promise<{ id: string | 
   );
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     return <div>오류가 발생해씁니다...</div>;
   }
 
