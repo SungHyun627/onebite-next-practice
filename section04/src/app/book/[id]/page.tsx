@@ -1,7 +1,9 @@
 import style from './page.module.css';
 
 export default async function Page({ params }: { params: Promise<{ id: string | string[] }> }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${params.id}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${(await params).id}`
+  );
 
   if (!response.ok) {
     return <div>오류가 발생해씁니다...</div>;
