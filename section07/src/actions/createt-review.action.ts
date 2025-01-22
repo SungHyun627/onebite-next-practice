@@ -2,13 +2,16 @@
 
 import { revalidatePath } from 'next/cache';
 
-export async function creaeteReviewAction(formData: FormData) {
+export async function creaeteReviewAction(_: any, formData: FormData) {
   const bookId = formData.get('bookId')?.toString();
   const content = formData.get('content')?.toString();
   const author = formData.get('author')?.toString();
 
   if (!content || !author) {
-    return;
+    return {
+      status: false,
+      error: '리뷰 내용과 작성자를 입력해주세요.',
+    };
   }
 
   try {
@@ -16,10 +19,16 @@ export async function creaeteReviewAction(formData: FormData) {
       method: 'POST',
       body: JSON.stringify({ bookId, content, author }),
     });
-    console.log(response.status);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
     revalidatePath(`/book/${bookId}`);
+    return {
+      status: true,
+      message: '',
+    };
   } catch (err) {
-    console.error(err);
-    return;
+    return { status: false, error: `리뷰 작성에 실패했습니다. ${err}` };
   }
 }
