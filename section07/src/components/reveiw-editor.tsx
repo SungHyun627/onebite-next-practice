@@ -2,10 +2,10 @@
 
 import { useActionState, useEffect } from 'react';
 import style from './review-editor.module.css';
-import { creaeteReviewAction } from '@/actions/createt-review.action';
+import { createReviewAction } from '@/actions/create-review.action';
 
 export default function ReviewEditor({ bookId }: { bookId: string }) {
-  const [state, formAction, isPending] = useActionState(creaeteReviewAction, null);
+  const [state, formAction, isPending] = useActionState(createReviewAction, null);
 
   useEffect(() => {
     if (state && !state.status) {
