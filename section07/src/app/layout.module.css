@@ -7,18 +7,18 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.container > header {
+.container>header {
   height: 60px;
   font-weight: bold;
   font-size: 18px;
   line-height: 60px;
 }
 
-.container > main {
+.container>main {
   padding-top: 10px;
 }
 
-.container > footer {
+.container>footer {
   padding: 100px 0px;
   color: gray;
 }
