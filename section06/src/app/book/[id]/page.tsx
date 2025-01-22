@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: Promise<{ id: string | 
     if (response.status === 404) {
       notFound();
     }
-    return <div>오류가 발생해씁니다...</div>;
+    return <div>오류가 발생했습니다...</div>;
   }
 
   const book = await response.json();
